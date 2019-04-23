@@ -1,0 +1,7 @@
+<ngb-carousel *ngIf="images" id="carousel">
+
+    <ng-template ngbSlide *ngFor='let image of images'>
+      <app-vehicle-gallery-item [carImageUrl]='image.url'></app-vehicle-gallery-item>
+    </ng-template>
+
+</ngb-carousel>

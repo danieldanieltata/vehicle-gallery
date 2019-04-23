@@ -1,0 +1,38 @@
+.image-card-container{
+    width: 200px; 
+    height: 90px;
+
+    margin-right: 5px;
+
+    border: 1px solid gray;
+    border-radius: 10px;
+    
+    background-size: cover;
+}
+
+.image-card-container:hover{
+    opacity: 0.9;
+
+    box-shadow: 0px 6px 10px 2px grey;
+}
+
+.image-card-container:hover .button-container{
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.button-container{
+    display: none;
+}
+
+.simple-button{
+    color: white;
+
+    margin-right: 5px;
+}
+
