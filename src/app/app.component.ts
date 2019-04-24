@@ -19,8 +19,9 @@ import { DataService } from './shared/services/data-service.service';
 1. Fix the caruosel screen size scaling bug 
 2. Use IndexDB instead of localStorage because the localStorage is synchronous
 3. Move the drag and drop to a component
-4. Make the 'Make a new gallery' feature 
-5. Remove the random vehicle photo and make a uplaod feature
+4. Make the 'Make a new gallery' feature
+5. Remove the random vehicle photo and make a uplaod feature with firebase
+6. Add delete saved set 
 */
 
 export class AppComponent implements OnInit, OnDestroy{
