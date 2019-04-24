@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
-
+import { Subscription } from 'rxjs';
 
 import { VehicleObjectModel } from './shared/models/vehicle-object';
 
@@ -10,7 +9,7 @@ import { VehicleObjectModel } from './shared/models/vehicle-object';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
   title = 'vehicle-gallery';
 
   images: VehicleObjectModel[] = [
@@ -18,18 +17,27 @@ export class AppComponent {
     { position: 1, url: 'assets/cars-images/2.jpg' }
   ]
 
-  constructor(public _dragulaService: DragulaService){
-   
+  dragularDropSubsciption$  : Subscription;
+
+  constructor(public _dragulaService: DragulaService){ 
     // This is the dragula service 
     this._dragulaService.createGroup('vehicles', {
       removeOnSpill: false,
     });
 
     // Drop subscription, triggred when the user droped the image
-    this._dragulaService.drop().subscribe(() => {
+    this.dragularDropSubsciption$ = this._dragulaService.drop().subscribe(() => {
       this.rePosition();
     });
 
+  }
+
+  ngOnInit(){
+    // TODO change to indexDB or something, the localStorage is synchronous
+    if(localStorage.getItem('imagesCopy'))
+      this.images = JSON.parse(localStorage.getItem('imagesCopy'));
+    else
+      localStorage.setItem('imagesCopy', JSON.stringify(this.images));
   }
 
   // Clone image by the editors component
@@ -47,6 +55,16 @@ export class AppComponent {
     this.rePosition();
   }
 
+  // Reset the images set 
+  resetSet(){
+    this.images = JSON.parse(localStorage.getItem('imagesCopy'));
+  }
+
+  // Set a new default set 
+  setAsDefaultSet(){
+    localStorage.setItem('imagesCopy', JSON.stringify(this.images));
+  }
+
   // This function re-positioning the images set when needed
   public rePosition(){
     let position = 0;
@@ -56,5 +74,9 @@ export class AppComponent {
       position = position + 1;
     });
 
+  }
+
+  ngOnDestroy(){
+    this.dragularDropSubsciption$.unsubscribe();
   }
 }

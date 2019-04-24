@@ -9,10 +9,8 @@
 
 <div class="sidebar">
   <div class="sidebar-spacer"></div>
-    <!-- <div class="sidebar-button-cotainer"> -->
-      <button class='btn btn-warning simple-button' ngbTooltip='Set this set as default'><i class="fas fa-save"></i></button>
-      <button class='btn btn-info simple-button' ngbTooltip='Reset to default set'><i class="fas fa-redo"></i></button>
-  <!-- </div> -->
+      <button class='btn btn-info simple-button' ngbTooltip='Set this set as default' (click)='setAsDefaultSet()'><i class="fas fa-save"></i></button>
+      <button class='btn btn-info simple-button' ngbTooltip='Reset to default set' (click)='resetSet()'><i class="fas fa-redo"></i></button>
 </div>
 
 <div class="image-drag-and-drop">
