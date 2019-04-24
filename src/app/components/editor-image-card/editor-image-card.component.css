@@ -7,7 +7,7 @@
     border: 1px solid gray;
     border-radius: 10px;
     
-    background-size: cover;
+    background-size: 200px 90px;
 }
 
 .image-card-container:hover{
