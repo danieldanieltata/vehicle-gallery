@@ -56,12 +56,12 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   // Reset the images set 
-  resetSet(){
+  public resetSet(){
     this.images = JSON.parse(localStorage.getItem('imagesCopy'));
   }
 
   // Set a new default set 
-  setAsDefaultSet(){
+  public setAsDefaultSet(){
     localStorage.setItem('imagesCopy', JSON.stringify(this.images));
   }
 

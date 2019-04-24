@@ -1,22 +1,17 @@
-<div class="vertical-center">
-  <div class="container ">
+<div class="wrapper">
+  <app-vehicle-gallery [images]=images></app-vehicle-gallery>
     
-    <app-vehicle-gallery [images]=images></app-vehicle-gallery>
-    
-  </div> 
+  <div class="sidebar">
+    <div class="sidebar-spacer"></div>
+        <button class='btn btn-info simple-button' ngbTooltip='Set this set as default' (click)='setAsDefaultSet()'><i class="fas fa-save"></i></button>
+        <button class='btn btn-info simple-button' ngbTooltip='Reset to default set' (click)='resetSet()'><i class="fas fa-redo"></i></button>
+  </div>
+
+  <div class="image-drag-and-drop">
+      <div class="images-list" dragula='vehicles' [dragulaModel]='images' (dragulaModelChange)='images = $event'>
+          <app-editor-image-card *ngFor='let image of images ; let i = index' [imageUrl]='image.url' (clone)='cloneImage($event, i)' (delete)='deleteImage(i, image)'></app-editor-image-card>
+      </div>
+  </div>
+
+
 </div>
-
-
-<div class="sidebar">
-  <div class="sidebar-spacer"></div>
-      <button class='btn btn-info simple-button' ngbTooltip='Set this set as default' (click)='setAsDefaultSet()'><i class="fas fa-save"></i></button>
-      <button class='btn btn-info simple-button' ngbTooltip='Reset to default set' (click)='resetSet()'><i class="fas fa-redo"></i></button>
-</div>
-
-<div class="image-drag-and-drop">
-    <div class="images-list" dragula='vehicles' [dragulaModel]='images' (dragulaModelChange)='images = $event'>
-        <app-editor-image-card *ngFor='let image of images ; let i = index' [imageUrl]='image.url' (clone)='cloneImage($event, i)' (delete)='deleteImage(i, image)'></app-editor-image-card>
-    </div>
-</div>
-
-
